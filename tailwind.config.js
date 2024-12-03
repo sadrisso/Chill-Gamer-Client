@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'gamer': "url('https://i.ibb.co.com/Fm4Fg9h/games.png')",
+      }
+    },
   },
   plugins: [require('daisyui'),],
 }
