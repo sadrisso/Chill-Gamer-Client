@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../auth/AuthProvider";
 
 
 const Navbar = () => {
+
+    const { user, signout } = useContext(AuthContext)
 
     const links = <div className="flex gap-5">
         <Link to="/">Home</Link>
@@ -10,6 +14,17 @@ const Navbar = () => {
         <Link to="/">My Review</Link>
         <Link to="/">Game Reviews</Link>
     </div>
+
+    const handleLogOut = () => {
+        signout()
+            .then(() => {
+                console.log("Signed Out")
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        return;
+    }
 
     return (
         <div className="">
@@ -44,7 +59,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to="/login"><a className="btn btn-neutral btn-sm">Login</a></Link>
+                    {user ? <Link onClick={handleLogOut}><button className="btn btn-sm">LogOut</button></Link> :
+                        <Link to="/login"><a className="btn btn-neutral btn-sm">Login</a></Link>}
                 </div>
             </div>
         </div>
