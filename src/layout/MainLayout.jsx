@@ -7,11 +7,11 @@ import { Navbar } from './Navbar';
 const MainLayout = () => {
 
     return (
-        <div className='bg-slate-200'>
+        <div className='bg-slate-100'>
             <div>
                 <Navbar />
             </div>
-            <div className='my-20 '>
+            <div className='my-10 '>
                 <Outlet />
             </div>
             <div>

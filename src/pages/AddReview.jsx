@@ -25,7 +25,7 @@ const AddReview = () => {
         const submitInfo = { gameImage, gameTitle, description, rating, publishingYear, genre, email, name }
         console.log(submitInfo)
 
-        fetch("http://localhost:3000/reviews", {
+        fetch("http://localhost:3000/review", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(submitInfo)

@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <div>
             <div className="text-center">
-                <div className="carousel rounded-box text-center">
+                <div className="carousel rounded-box text-center mt-12">
                     <div className="carousel-item">
                         <img className="w-[300px]" src="https://i.ibb.co.com/bQdfbSk/games-1.png" alt="Drink" />
                     </div>
