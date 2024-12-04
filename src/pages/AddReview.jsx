@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../auth/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 
@@ -32,6 +33,16 @@ const AddReview = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your review has been submitted",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    form.reset();
+                }
             })
     }
 
