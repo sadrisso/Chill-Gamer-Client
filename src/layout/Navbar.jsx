@@ -7,12 +7,13 @@ import Swal from "sweetalert2";
 export const Navbar = () => {
 
     const { user, signout } = useContext(AuthContext)
+    const email = user?.email;
 
     const links = <div className="flex gap-5">
         <Link to="/">Home</Link>
         <Link to="/all-reviews">All Reviews</Link>
         <Link to="/add-review">Add Review</Link>
-        <Link to="/">My Review</Link>
+        <Link to={`/watch/${email}`}>My WatchList</Link>
         <Link to="/">Game Reviews</Link>
     </div>
 

@@ -8,6 +8,7 @@ import AddReview from "../pages/AddReview";
 import PrivateRoute from "./PrivateRoute";
 import AllReviews from "../pages/AllReviews";
 import ReviewDetails from "../pages/ReviewDetails";
+import WatchList from "../pages/WatchList";
 
 export const router = createBrowserRouter([
     {
@@ -42,7 +43,12 @@ export const router = createBrowserRouter([
             {
                 path: "/review/:id",
                 element: <ReviewDetails />,
-                loader: ({params}) => fetch(`http://localhost:3000/review/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/review/${params.id}`)
+            },
+            {
+                path: "/watch/:email",
+                element: <WatchList />,
+                loader: ({params}) => fetch(`http://localhost:3000/watch/${params.email}`)
             }
         ]
     },
