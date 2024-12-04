@@ -1,7 +1,8 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -9,6 +10,8 @@ const googleProvider = new GoogleAuthProvider();
 const Register = () => {
 
     const { createUser, updateUser, signInGoogle } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const [error, setError] = useState({});
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -21,13 +24,29 @@ const Register = () => {
         const registerInfo = { name, email, photo, password }
 
 
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+        if (name.length < 3) {
+            setError({...error, nameErr: "name must be atlease 3 character"})
+            return;
+        }
+
+        if (!passwordRegex.test(password)) {
+            setError({...error, passwordError: "password must have atleast 1 uppercase 1 lowercase and 6 digit long"});
+            return;
+        }
+
+
         createUser(email, password)
             .then(res => {
                 console.log("Registered : ", res.user)
                 updateUser({displayName: name, photoURL: photo})
+                Swal.fire("Registration Done!");
+                navigate("/")
             })
             .catch(err => {
                 console.log("ERR : ", err)
+                setError({...error, registerError: err.message})
             })
     }
 
@@ -42,6 +61,7 @@ const Register = () => {
                             <span className="label-text">Name</span>
                         </label>
                         <input type="text" placeholder="name" name="name" className="input input-bordered" required />
+                        <p className="text-red-500">{error?.nameErr && error.nameErr}</p>
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -60,6 +80,7 @@ const Register = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password" placeholder="password" name="password" className="input input-bordered" required />
+                        <p className="text-red-500">{error?.passwordError && error.passwordError}</p>
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Register</button>
@@ -69,6 +90,7 @@ const Register = () => {
                 <div className="text-center mb-10">
                     <button className="btn btn-neutral btn-wide btn-outline" onClick={() => signInGoogle(googleProvider)}>Google</button>
                 </div>
+                <p className="text-center text-red-500">{error?.registerError && error.registerError}</p>
             </div>
         </div>
     );

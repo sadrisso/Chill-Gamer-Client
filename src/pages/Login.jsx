@@ -1,11 +1,14 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
 
     const { signIn } = useContext(AuthContext)
+    const [error, setError] = useState("")
+    const navigate = useNavigate()
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -19,9 +22,12 @@ const Login = () => {
         signIn(email, password)
             .then(res => {
                 console.log("Logged in : ", res.user)
+                Swal.fire("Login Done!");
+                navigate("/")
             })
             .catch(err => {
                 console.log("ERR : ", err)
+                setError(err)
             })
     }
 
@@ -50,6 +56,7 @@ const Login = () => {
                         <button className="btn btn-primary">Login</button>
                     </div>
                     <p>Don't have an account? <Link to="/register">Register</Link></p>
+                    <p className="text-center text-red-500">{error && error.message}</p>
                 </form>
             </div>
         </div>
