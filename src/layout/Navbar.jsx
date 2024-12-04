@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import Swal from "sweetalert2";
 
 
-const Navbar = () => {
+export const Navbar = () => {
 
     const { user, signout } = useContext(AuthContext)
 
     const links = <div className="flex gap-5">
         <Link to="/">Home</Link>
         <Link to="/">All Reviews</Link>
-        <Link to="/">Add Reviews</Link>
+        <Link to="/add-review">Add Review</Link>
         <Link to="/">My Review</Link>
         <Link to="/">Game Reviews</Link>
     </div>
@@ -30,7 +30,7 @@ const Navbar = () => {
 
     return (
         <div className="">
-            <div className="navbar bg-blue-900 text-white font-semibold p-2">
+            <div className="navbar bg-blue-900 text-white font-semibold py-5">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,7 +60,11 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end gap-2">
+                    {user &&
+                        <div className="tooltip tooltip-bottom" data-tip="hello">
+                            <Link to="/profile">{user?.displayName}</Link>
+                        </div>}
                     {user ? <Link onClick={handleLogOut}><button className="btn btn-sm">LogOut</button></Link> :
                         <Link to="/login"><a className="btn btn-neutral btn-sm">Login</a></Link>}
                 </div>
@@ -69,4 +73,3 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;

@@ -1,19 +1,20 @@
 
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
 import Footer from './Footer';
-
+import { Navbar } from './Navbar';
 
 
 const MainLayout = () => {
 
     return (
         <div className='bg-slate-200'>
-            <Navbar />
+            <div>
+                <Navbar />
+            </div>
             <div className='my-20 '>
                 <Outlet />
             </div>
-            <div className=''>
+            <div>
                 <Footer />
             </div>
         </div>

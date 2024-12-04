@@ -21,18 +21,18 @@ const Register = () => {
         const email = form.email.value;
         const photo = form.photoUrl.value;
         const password = form.password.value;
-        const registerInfo = { name, email, photo, password }
+        const registerInfo = { name, email, photo }
 
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
         if (name.length < 3) {
-            setError({...error, nameErr: "name must be atlease 3 character"})
+            setError({ ...error, nameErr: "name must be atlease 3 character" })
             return;
         }
 
         if (!passwordRegex.test(password)) {
-            setError({...error, passwordError: "password must have atleast 1 uppercase 1 lowercase and 6 digit long"});
+            setError({ ...error, passwordError: "password must have atleast 1 uppercase 1 lowercase and 6 digit long" });
             return;
         }
 
@@ -40,13 +40,15 @@ const Register = () => {
         createUser(email, password)
             .then(res => {
                 console.log("Registered : ", res.user)
-                updateUser({displayName: name, photoURL: photo})
-                Swal.fire("Registration Done!");
-                navigate("/")
+                updateUser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        Swal.fire("Registration Done!");
+                        navigate("/")
+                    })
             })
             .catch(err => {
                 console.log("ERR : ", err)
-                setError({...error, registerError: err.message})
+                setError({ ...error, registerError: err.message })
             })
     }
 
