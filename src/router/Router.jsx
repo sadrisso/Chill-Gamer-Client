@@ -10,15 +10,18 @@ import AllReviews from "../pages/AllReviews";
 import ReviewDetails from "../pages/ReviewDetails";
 import WatchList from "../pages/WatchList";
 import MyReviews from "../pages/MyReviews";
+import ErrorPage from '../pages/ErrorPage';
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        // errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
-                element: <Home />
+                element: <Home />,
+                loader: () => fetch("http://localhost:3000/highest-rated-games")
             },
             {
                 path: "/register",
@@ -38,23 +41,23 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/all-reviews",
-                element: <PrivateRoute><AllReviews /></PrivateRoute>,
+                element: <AllReviews />,
                 loader: () => fetch("http://localhost:3000/review")
             },
             {
                 path: "/review/:id",
-                element: <ReviewDetails />,
+                element: <PrivateRoute><ReviewDetails /></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:3000/review/${params.id}`)
             },
             {
                 path: "/game-watch-list/:email",
-                element: <WatchList />,
+                element: <PrivateRoute><WatchList /></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:3000/game-watch-list/${params.email}`)
             },
             {
                 path: "/my-review/:email",
-                element: <MyReviews />,
-                loader: ({params}) => fetch(`http://localhost:3000/my-review/${params.email}`)
+                element: <PrivateRoute><MyReviews /></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/my-review/${params.email}`)
             }
         ]
     },

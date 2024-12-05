@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const WatchList = () => {
 
     const watchedData = useLoaderData()
+    const [watch, setWatch] = useState(watchedData)
+
+    const handleRemove = (id) => {
+
+        fetch(`http://localhost:3000/watch-list/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+        const remaining = watch.filter((w) => w._id !== id)
+        setWatch(remaining)
+    }
 
     return (
         <div>
@@ -22,15 +36,15 @@ const WatchList = () => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody className=''>
-                        {watchedData.map((data, i) => <tr>
+                    <tbody>
+                        {watch.map((data, i) => <tr>
                             <th>{i + 1}</th>
                             <td>{data.gameTitle}</td>
                             <td><img className='w-[60px] h-[50px]' src={data.gameImage} alt="" /></td>
                             <td>{data.publishingYear}</td>
                             <td className='flex gap-2'>
                                 <button className='btn btn-sm'>Edit</button>
-                                <button className='btn btn-sm'>Delete</button>
+                                <button className='btn btn-sm' onClick={() => handleRemove(data._id)}>Delete</button>
                             </td>
                         </tr>)}
                     </tbody>

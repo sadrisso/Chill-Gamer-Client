@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const MyReviews = () => {
 
     const myReviewData = useLoaderData()
+    const [review, setReview] = useState(myReviewData)
+
+    const handleRemove = (id) => {
+        fetch(`http://localhost:3000/my-review/${id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+        const remaining = review.filter((r) => r._id !== id)
+        setReview(remaining)
+    }
 
     return (
         <div>
@@ -18,22 +31,22 @@ const MyReviews = () => {
                             <tr>
                                 <th>No.</th>
                                 <th>Title</th>
-                                <th>Genre</th>
+                                <th>Rating</th>
                                 <th>Description</th>
                                 <th>Game Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {myReviewData.map((data, i) => <tr>
+                            {review.map((data, i) => <tr>
                                 <th>{i + 1}</th>
                                 <td>{data?.gameTitle}</td>
-                                <td>{data?.genre}</td>
+                                <td>{data?.rating}</td>
                                 <td>{data?.description}</td>
                                 <td><img className='w-[60px] h-[50px]' src={data?.gameImage} alt="" /></td>
                                 <td className='flex gap-2 items-center'>
                                     <button className='btn btn-sm'>Edit</button>
-                                    <button className='btn btn-sm'>Delete</button>
+                                    <button className='btn btn-sm' onClick={() => handleRemove(data._id)}>Delete</button>
                                 </td>
                             </tr>)}
                         </tbody>
