@@ -15,6 +15,7 @@ const WatchList = () => {
                     {/* head */}
                     <thead>
                         <tr>
+                            <th>No.</th>
                             <th>Title</th>
                             <th>Image</th>
                             <th>Published</th>
@@ -22,8 +23,9 @@ const WatchList = () => {
                         </tr>
                     </thead>
                     <tbody className=''>
-                        {watchedData.map((data) => <tr>
-                            <th>{data.gameTitle}</th>
+                        {watchedData.map((data, i) => <tr>
+                            <th>{i + 1}</th>
+                            <td>{data.gameTitle}</td>
                             <td><img className='w-[60px] h-[50px]' src={data.gameImage} alt="" /></td>
                             <td>{data.publishingYear}</td>
                             <td className='flex gap-2'>

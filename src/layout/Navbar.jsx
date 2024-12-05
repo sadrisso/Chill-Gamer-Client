@@ -13,15 +13,15 @@ export const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/all-reviews">All Reviews</Link>
         <Link to="/add-review">Add Review</Link>
-        <Link to={`/watch/${email}`}>My WatchList</Link>
-        <Link to="/">Game Reviews</Link>
+        <Link to={`/game-watch-list/${email}`}>My WatchList</Link>
+        <Link to={`/my-review/${email}`}>My Reviews</Link>
     </div>
 
     const handleLogOut = () => {
         signout()
             .then(() => {
                 console.log("Signed Out")
-                Swal.fire("Logged Out Successfull");
+                Swal.fire("Logged Out Successful");
                 navigate("/login")
             })
             .catch(err => {
@@ -64,7 +64,7 @@ export const Navbar = () => {
                 <div className="navbar-end gap-2">
                     {user &&
                         <div className="tooltip tooltip-bottom" data-tip="hello">
-                            <Link to="/profile">{user?.displayName}</Link>
+                            <Link to="/profile"><img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="" /></Link>
                         </div>}
                     {user ? <Link onClick={handleLogOut}><button className="btn btn-sm">LogOut</button></Link> :
                         <Link to="/login"><a className="btn btn-neutral btn-sm">Login</a></Link>}

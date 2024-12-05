@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllReviews from "../pages/AllReviews";
 import ReviewDetails from "../pages/ReviewDetails";
 import WatchList from "../pages/WatchList";
+import MyReviews from "../pages/MyReviews";
 
 export const router = createBrowserRouter([
     {
@@ -46,9 +47,14 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:3000/review/${params.id}`)
             },
             {
-                path: "/watch/:email",
+                path: "/game-watch-list/:email",
                 element: <WatchList />,
-                loader: ({params}) => fetch(`http://localhost:3000/watch/${params.email}`)
+                loader: ({ params }) => fetch(`http://localhost:3000/game-watch-list/${params.email}`)
+            },
+            {
+                path: "/my-review/:email",
+                element: <MyReviews />,
+                loader: ({params}) => fetch(`http://localhost:3000/my-review/${params.email}`)
             }
         ]
     },
