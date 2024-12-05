@@ -42,7 +42,7 @@ const Register = () => {
                 console.log("Registered : ", res.user)
                 updateUser({ displayName: name, photoURL: photo })
                     .then(() => {
-                        Swal.fire("Registration Done!");
+                        Swal.fire("Registration Successful");
                         navigate("/")
                     })
             })

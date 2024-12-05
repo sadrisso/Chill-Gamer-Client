@@ -43,8 +43,7 @@ const WatchList = () => {
                             <td><img className='w-[60px] h-[50px]' src={data.gameImage} alt="" /></td>
                             <td>{data.publishingYear}</td>
                             <td className='flex gap-2'>
-                                <button className='btn btn-sm'>Edit</button>
-                                <button className='btn btn-sm' onClick={() => handleRemove(data._id)}>Delete</button>
+                                <button className='btn btn-sm btn-error' onClick={() => handleRemove(data._id)}>Delete</button>
                             </td>
                         </tr>)}
                     </tbody>

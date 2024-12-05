@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const MyReviews = () => {
 
@@ -45,8 +45,8 @@ const MyReviews = () => {
                                 <td>{data?.description}</td>
                                 <td><img className='w-[60px] h-[50px]' src={data?.gameImage} alt="" /></td>
                                 <td className='flex gap-2 items-center'>
-                                    <button className='btn btn-sm'>Edit</button>
-                                    <button className='btn btn-sm' onClick={() => handleRemove(data._id)}>Delete</button>
+                                    <Link to={`/updateReview/${data._id}`}><button className='btn btn-sm btn-info'>Edit</button></Link>
+                                    <button className='btn btn-sm btn-error' onClick={() => handleRemove(data._id)}>Delete</button>
                                 </td>
                             </tr>)}
                         </tbody>
