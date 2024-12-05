@@ -6,9 +6,11 @@ import Swal from "sweetalert2";
 
 const Login = () => {
 
-    const { signIn } = useContext(AuthContext)
+    const { signIn, loading } = useContext(AuthContext)
     const [error, setError] = useState("")
     const navigate = useNavigate()
+
+    console.log("loading",loading)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -22,7 +24,7 @@ const Login = () => {
         signIn(email, password)
             .then(res => {
                 console.log("Logged in : ", res.user)
-                Swal.fire("Login Done!");
+                Swal.fire("Login Successful");
                 navigate("/")
             })
             .catch(err => {
@@ -53,7 +55,10 @@ const Login = () => {
                         </label>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">Login</button>
+                        <button className="btn btn-primary" disabled={loading}>
+                            {loading && <span className="loading loading-spinner loading-md"></span>}
+                            Login
+                        </button>
                     </div>
                     <p>Don't have an account? <Link to="/register">Register</Link></p>
                     <p className="text-center text-red-500">{error && error.message}</p>

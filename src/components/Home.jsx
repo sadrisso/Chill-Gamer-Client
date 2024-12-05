@@ -1,12 +1,9 @@
-import { useContext } from "react";
+
 import { Link, useLoaderData } from "react-router-dom";
-import { AuthContext } from "../auth/AuthProvider";
 
 
 const Home = () => {
 
-
-    const { user } = useContext(AuthContext)
     const highestRatedGames = useLoaderData()
     console.log(highestRatedGames)
 
@@ -42,7 +39,7 @@ const Home = () => {
 
 
                 {/* HIGHEST RATES GAMES SECTION STARTS FROM HERE */}
-                { user && <div className="mt-10 md:mt-20">
+                <div className="mt-10 md:mt-20">
                     <div>
                         <h1 className="text-orange-500 text-3xl font-bold text-center">Highest Rated Games</h1>
                         <p className="text-gray-500 text-center">This games are now on highest stars of ratings you can play for big fun</p>
@@ -67,14 +64,14 @@ const Home = () => {
                                 </div>)
                         }
                     </div>
-                </div>}
+                </div>
                 {/* HIGHEST RATES GAMES SECTION ENDS HERE */}
 
 
 
 
                 {/* TRANDING GAMES SECTION STARTS FROM HERE */}
-                {user && <div className="my-20">
+                <div className="my-20">
                     <div>
                         <h1 className="text-purple-500 text-3xl font-bold text-center">Tranding Games</h1>
                         <p className="text-gray-500 text-center">This games are on tranding you can play for big fun</p>
@@ -82,7 +79,7 @@ const Home = () => {
                     <div>
 
                     </div>
-                </div>}
+                </div>
                 {/* TRANDING GAMES SECTION ENDS HERE */}
             </div>
         </div>

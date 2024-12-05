@@ -63,11 +63,11 @@ export const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-2">
                     {user &&
-                        <div className="tooltip tooltip-bottom" data-tip="hello">
+                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                             <Link to="/profile"><img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="" /></Link>
                         </div>}
-                    {user ? <Link onClick={handleLogOut}><button className="btn btn-sm">LogOut</button></Link> :
-                        <Link to="/login"><a className="btn btn-neutral btn-sm">Login</a></Link>}
+                    {user ? <Link onClick={handleLogOut}><button className="btn">LogOut</button></Link> :
+                        <Link to="/login"><a className="btn btn-neutral">Login</a></Link>}
                 </div>
             </div>
         </div>

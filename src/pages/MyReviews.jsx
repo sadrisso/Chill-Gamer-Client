@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyReviews = () => {
 
@@ -7,15 +8,27 @@ const MyReviews = () => {
     const [review, setReview] = useState(myReviewData)
 
     const handleRemove = (id) => {
-        fetch(`http://localhost:3000/my-review/${id}`, {
-            method: "DELETE"
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
-        const remaining = review.filter((r) => r._id !== id)
-        setReview(remaining)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/my-review/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+                const remaining = review.filter((r) => r._id !== id)
+                setReview(remaining)
+            }
+        });
     }
 
     return (

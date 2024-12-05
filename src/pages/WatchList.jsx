@@ -5,6 +5,7 @@ const WatchList = () => {
 
     const watchedData = useLoaderData()
     const [watch, setWatch] = useState(watchedData)
+    console.log(watch)
 
     const handleRemove = (id) => {
 

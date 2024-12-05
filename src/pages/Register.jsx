@@ -33,6 +33,11 @@ const Register = () => {
 
         if (!passwordRegex.test(password)) {
             setError({ ...error, passwordError: "password must have atleast 1 uppercase 1 lowercase and 6 digit long" });
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+              });
             return;
         }
 

@@ -35,6 +35,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             console.log("User here : ", currentUser)
             setUser(currentUser)
+            setLoading(false)
         })
 
         return () => {
@@ -43,7 +44,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const authInfo = { createUser, signIn, updateUser, signInGoogle, signout, user }
+    const authInfo = { createUser, signIn, updateUser, signInGoogle, signout, user, loading }
 
     return (
         <div>

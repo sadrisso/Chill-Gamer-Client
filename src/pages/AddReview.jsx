@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../auth/AuthProvider';
 import Swal from 'sweetalert2';
 
@@ -7,6 +7,15 @@ import Swal from 'sweetalert2';
 const AddReview = () => {
 
     const { user } = useContext(AuthContext);
+    const [rating, setRating] = useState(null);
+
+    const handleChange = (e) => {
+        if (e.target.value > 10) {
+            setRating(10)
+            return;
+        }
+        setRating(e.target.value)
+    }
 
     const genres = ["Action", "RPG", "Adventure"];
 
@@ -80,7 +89,7 @@ const AddReview = () => {
                                 <label className="label">
                                     <span className="label-text">Rating</span>
                                 </label>
-                                <input type="number" placeholder="rating" name='rating' className="input input-bordered" required />
+                                <input type="number" placeholder="rating" name='rating' value={rating} onChange={(e) => handleChange(e)} className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -96,13 +105,13 @@ const AddReview = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="email" defaultValue={user?.email} name='email' className="input input-bordered" required />
+                                <input type="email" placeholder="email" defaultValue={user?.email} readOnly name='email' className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">User Name</span>
                                 </label>
-                                <input type="text" placeholder="name" defaultValue={user?.displayName} name='name' className="input input-bordered" required />
+                                <input type="text" placeholder="name" defaultValue={user?.displayName} readOnly name='name' className="input input-bordered" required />
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Add Review</button>

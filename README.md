@@ -7,8 +7,8 @@
 - https://chill-gamer-90cfe.web.app/
 
 ## Features
--
--
--
--
--
+- User Authentication
+- Game Review Management
+- Dynamic Game Showcase
+- Sort and Filter
+- Responsive and Accessible Design
