@@ -1,9 +1,10 @@
-
+import Lottie from "lottie-react";
+import error from "../../public/404.json"
 
 const ErrorPage = () => {
     return (
-        <div className="text-5xl">
-            SOMTHING WENT WRONG!!
+        <div className="">
+            <Lottie animationData={error} className="w-96" />
         </div>
     );
 };
