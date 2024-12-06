@@ -10,7 +10,6 @@ const Login = () => {
     const [error, setError] = useState("")
     const navigate = useNavigate()
 
-    console.log("loading",loading)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -28,8 +27,14 @@ const Login = () => {
                 navigate("/")
             })
             .catch(err => {
-                console.log("ERR : ", err)
-                setError(err)
+                if (err) {
+                    setError(err)
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    })
+                }
             })
     }
 

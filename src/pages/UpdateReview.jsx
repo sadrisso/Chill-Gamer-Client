@@ -26,7 +26,7 @@ const UpdateReview = () => {
         const updatedInfo = { gameImage, gameTitle, description, rating, publishingYear, genre, email, name }
 
 
-        fetch(`http://localhost:3000/updateReview/${updateItem._id}`, {
+        fetch(`https://chill-gamer-server-eight.vercel.app/updateReview/${updateItem._id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(updatedInfo)

@@ -7,7 +7,7 @@ const AllReviews = () => {
     const [reviews, setReviews] = useState(allReviews)
 
     const refetchReviews = (value) => {
-        fetch(`http://localhost:3000/review?sort=${value}`, {
+        fetch(`https://chill-gamer-server-eight.vercel.app/review?sort=${value}`, {
             method: "GET"
         })
             .then(res => res.json())
@@ -39,6 +39,8 @@ const AllReviews = () => {
                             <div className="card-body">
                                 <h2 className="card-title">{review.gameTitle}</h2>
                                 <p>If a dog chews shoes whose shoes does he choose?</p>
+                                <p>Rating: {review.rating}</p>
+                                <p>Publishing Year: {review.publishingYear}</p>
                                 <div className="card-actions justify-end">
                                     <Link to={`/review/${review._id}`}><button className="btn btn-neutral btn-sm">Explore Details</button></Link>
                                 </div>

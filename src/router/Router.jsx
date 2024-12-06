@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
-                loader: () => fetch("http://localhost:3000/highest-rated-games")
+                loader: () => fetch("https://chill-gamer-server-eight.vercel.app/highest-rated-games")
             },
             {
                 path: "/register",
@@ -43,27 +43,27 @@ export const router = createBrowserRouter([
             {
                 path: "/all-reviews",
                 element: <AllReviews />,
-                loader: () => fetch("http://localhost:3000/review")
+                loader: () => fetch("https://chill-gamer-server-eight.vercel.app/review")
             },
             {
                 path: "/review/:id",
                 element: <PrivateRoute><ReviewDetails /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/review/${params.id}`)
+                loader: ({ params }) => fetch(`https://chill-gamer-server-eight.vercel.app/review/${params.id}`)
             },
             {
                 path: "/game-watch-list/:email",
                 element: <PrivateRoute><WatchList /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/game-watch-list/${params.email}`)
+                loader: ({ params }) => fetch(`https://chill-gamer-server-eight.vercel.app/game-watch-list/${params.email}`)
             },
             {
                 path: "/my-review/:email",
                 element: <PrivateRoute><MyReviews /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/my-review/${params.email}`)
+                loader: ({ params }) => fetch(`https://chill-gamer-server-eight.vercel.app/my-review/${params.email}`)
             },
             {
                 path: "/updateReview/:id",
                 element: <UpdateReview />,
-                loader: ({params}) => fetch(`http://localhost:3000/updateReview/${params.id}`)
+                loader: ({params}) => fetch(`https://chill-gamer-server-eight.vercel.app/updateReview/${params.id}`)
             }
         ]
     },

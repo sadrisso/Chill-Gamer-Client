@@ -1,5 +1,7 @@
 
 import { Link, useLoaderData } from "react-router-dom";
+import Lottie from "lottie-react";
+import lottie from "../../public/lottie.json";
 
 
 const Home = () => {
@@ -39,7 +41,7 @@ const Home = () => {
 
 
                 {/* HIGHEST RATES GAMES SECTION STARTS FROM HERE */}
-                <div className="mt-10 md:mt-20">
+                <div className="mt-10 md:mt-20 px-2 md:px-16">
                     <div>
                         <h1 className="text-orange-500 text-3xl font-bold text-center">Highest Rated Games</h1>
                         <p className="text-gray-500 text-center">This games are now on highest stars of ratings you can play for big fun</p>
@@ -76,8 +78,18 @@ const Home = () => {
                         <h1 className="text-purple-500 text-3xl font-bold text-center">Tranding Games</h1>
                         <p className="text-gray-500 text-center">This games are on tranding you can play for big fun</p>
                     </div>
-                    <div>
-
+                    <div className="flex flex-col md:flex-row justify-center items-center mt-10 bg-orange-100 w-full md:w-2/3 mx-auto rounded-2xl">
+                        <div>
+                            <Lottie animationData={lottie} className="w-96" />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                            <img className="w-[200px] h-[120px] shadow-xl" src="https://i.ibb.co.com/6gtgfVD/trand.jpg" alt="" />
+                            <img className="w-[200px] h-[120px] shadow-xl" src="https://i.ibb.co.com/LQW4RgH/dev.jpg" alt="" />
+                            <img className="w-[200px] h-[120px] shadow-xl" src="https://i.ibb.co.com/Bz6RPbJ/dragon.jpg" alt="" />
+                            <img className="w-[200px] h-[120px] shadow-xl" src="https://i.ibb.co.com/hcc1BdX/joystick.jpg" alt="" />
+                            <img className="w-[200px] h-[120px] shadow-xl" src="https://i.ibb.co.com/LvfhQyr/games.png" alt="" />
+                            <img className="w-[200px] h-[120px] shadow-xl" src="https://i.ibb.co.com/Mn692ng/d-le.png" alt="" />
+                        </div>
                     </div>
                 </div>
                 {/* TRANDING GAMES SECTION ENDS HERE */}

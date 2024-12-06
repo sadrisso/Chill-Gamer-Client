@@ -9,7 +9,7 @@ export const Navbar = () => {
     const { user, signout } = useContext(AuthContext)
     const email = user?.email;
 
-    const links = <div className="flex gap-5">
+    const links = <div className="flex gap-5 text-black md:text-white">
         <Link to="/">Home</Link>
         <Link to="/all-reviews">All Reviews</Link>
         <Link to="/add-review">Add Review</Link>

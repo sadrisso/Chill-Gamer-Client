@@ -9,7 +9,7 @@ const WatchList = () => {
 
     const handleRemove = (id) => {
 
-        fetch(`http://localhost:3000/watch-list/${id}`, {
+        fetch(`https://chill-gamer-server-eight.vercel.app/watch-list/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

@@ -18,7 +18,7 @@ const MyReviews = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/my-review/${id}`, {
+                fetch(`https://chill-gamer-server-eight.vercel.app/my-review/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
